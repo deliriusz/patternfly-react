@@ -1,0 +1,31 @@
+import * as React from 'react';
+import { WithContextMenuProps, WithDndDropProps, WithSelectionProps, WithDragNodeProps } from '../../behavior';
+import { BadgeLocation, LabelPosition, Node } from '../../types';
+import { CollapsibleGroupProps } from './types';
+declare type DefaultGroupProps = {
+    className?: string;
+    element: Node;
+    droppable?: boolean;
+    canDrop?: boolean;
+    dropTarget?: boolean;
+    dragging?: boolean;
+    dragRegroupable?: boolean;
+    hover?: boolean;
+    label?: string;
+    secondaryLabel?: string;
+    showLabel?: boolean;
+    labelPosition?: LabelPosition;
+    truncateLength?: number;
+    labelIconClass?: string;
+    labelIcon?: string;
+    labelIconPadding?: number;
+    badge?: string;
+    badgeColor?: string;
+    badgeTextColor?: string;
+    badgeBorderColor?: string;
+    badgeClassName?: string;
+    badgeLocation?: BadgeLocation;
+} & Partial<CollapsibleGroupProps & WithSelectionProps & WithDndDropProps & WithDragNodeProps & WithContextMenuProps>;
+declare const _default: React.FunctionComponent<DefaultGroupProps>;
+export default _default;
+//# sourceMappingURL=DefaultGroup.d.ts.map

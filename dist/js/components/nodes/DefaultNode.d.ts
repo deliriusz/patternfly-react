@@ -1,0 +1,46 @@
+import * as React from 'react';
+import { BadgeLocation, GraphElement, LabelPosition, Node, NodeStatus, TopologyQuadrant } from '../../types';
+import { WithContextMenuProps, WithCreateConnectorProps, WithDndDragProps, WithDndDropProps, WithDragNodeProps, WithSelectionProps } from '../../behavior';
+import { ShapeProps } from './shapes';
+declare type DefaultNodeProps = {
+    children?: React.ReactNode;
+    className?: string;
+    element: Node;
+    droppable?: boolean;
+    hover?: boolean;
+    canDrop?: boolean;
+    dragging?: boolean;
+    edgeDragging?: boolean;
+    dropTarget?: boolean;
+    scaleNode?: boolean;
+    label?: string;
+    secondaryLabel?: string;
+    showLabel?: boolean;
+    labelClassName?: string;
+    scaleLabel?: boolean;
+    labelPosition?: LabelPosition;
+    truncateLength?: number;
+    labelIconClass?: string;
+    labelIcon?: React.ReactNode;
+    labelIconPadding?: number;
+    badge?: string;
+    badgeColor?: string;
+    badgeTextColor?: string;
+    badgeBorderColor?: string;
+    badgeClassName?: string;
+    badgeLocation?: BadgeLocation;
+    attachments?: React.ReactNode;
+    nodeStatus?: NodeStatus;
+    showStatusBackground?: boolean;
+    showStatusDecorator?: boolean;
+    statusDecoratorTooltip?: React.ReactNode;
+    onStatusDecoratorClick?: (event: React.MouseEvent<SVGGElement, MouseEvent>, element: GraphElement) => void;
+    getCustomShape?: (node: Node) => React.FunctionComponent<ShapeProps>;
+    getShapeDecoratorCenter?: (quadrant: TopologyQuadrant, node: Node) => {
+        x: number;
+        y: number;
+    };
+} & Partial<WithSelectionProps & WithDragNodeProps & WithDndDragProps & WithDndDropProps & WithCreateConnectorProps & WithContextMenuProps>;
+declare const _default: React.FunctionComponent<DefaultNodeProps>;
+export default _default;
+//# sourceMappingURL=DefaultNode.d.ts.map
