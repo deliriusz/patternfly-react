@@ -1,0 +1,1 @@
+{"version":3,"file":"ElementWrapper.d.ts","sourceRoot":"","sources":["../../../src/components/ElementWrapper.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,KAAK,MAAM,OAAO,CAAC;AAI/B,OAAO,EAAE,YAAY,EAAiC,MAAM,UAAU,CAAC;AAKvE,UAAU,mBAAmB;IAC3B,OAAO,EAAE,YAAY,CAAC;CACvB;AA8CD,QAAA,MAAM,cAAc,EAAE,KAAK,CAAC,iBAAiB,CAAC,mBAAmB,CA4D/D,CAAC;AAEH,eAAe,cAAc,CAAC"}
