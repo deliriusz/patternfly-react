@@ -1,0 +1,69 @@
+{
+  "name": "@patternfly/react-charts",
+  "version": "6.94.11",
+  "description": "This library provides a set of React chart components for use with the PatternFly reference implementation.",
+  "main": "dist/js/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "patternfly:src": "src/",
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "tag": "prerelease"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patternfly/patternfly-react.git"
+  },
+  "keywords": [
+    "react",
+    "patternfly"
+  ],
+  "author": "Red Hat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/patternfly/patternfly-react/issues"
+  },
+  "homepage": "https://github.com/patternfly/patternfly-react#readme",
+  "dependencies": {
+    "@patternfly/react-styles": "^4.91.10",
+    "@patternfly/react-tokens": "^4.93.10",
+    "hoist-non-react-statics": "^3.3.0",
+    "lodash": "^4.17.19",
+    "tslib": "^2.0.0",
+    "victory-area": "^36.6.7",
+    "victory-axis": "^36.6.7",
+    "victory-bar": "^36.6.7",
+    "victory-chart": "^36.6.7",
+    "victory-core": "^36.6.7",
+    "victory-create-container": "^36.6.7",
+    "victory-cursor-container": "^36.6.7",
+    "victory-group": "^36.6.7",
+    "victory-legend": "^36.6.7",
+    "victory-line": "^36.6.7",
+    "victory-pie": "^36.6.7",
+    "victory-scatter": "^36.6.7",
+    "victory-stack": "^36.6.7",
+    "victory-tooltip": "^36.6.7",
+    "victory-voronoi-container": "^36.6.7",
+    "victory-zoom-container": "^36.6.7"
+  },
+  "peerDependencies": {
+    "react": "^16.8 || ^17 || ^18",
+    "react-dom": "^16.8 || ^17 || ^18"
+  },
+  "scripts": {
+    "clean": "rimraf dist"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.157",
+    "css": "^2.2.3",
+    "fs-extra": "^6.0.1",
+    "glob": "^7.1.2",
+    "rimraf": "^2.6.2",
+    "typescript": "^4.7.4"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "assumeChangesOnlyAffectDirectDependencies": true,
+    "jsx": "react",
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "target": "es2015",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "importHelpers": true,
+    "composite": true,
+    "sourceMap": true,
+    "declarationMap": true,
+    "strict": true,
+    "strictNullChecks": false,
+    "isolatedModules": true,
+    "plugins": [
+      { "transform": "transformer-cjs-imports" }
+    ]
+  },
+  "exclude": [
+    "**/**.test.tsx",
+    "**/**.test.ts",
+    "**/examples/**"
+  ]
+}
