@@ -58,15 +58,14 @@ export const useBendpoint = <DropResult, CollectedProps, Props = {}>(
   // argh react events don't play nice with d3 pan zoom double click event
   const ref = React.useCallback<ConnectDragSource>(
     node => {
-      d3.select(node).on(
-        'click',
-        action(() => {
-          if (d3.event.shiftKey) {
-            d3.event.stopPropagation();
+      d3.select(node).on('click', function(event: any) {
+        return action(() => {
+          if (event.shiftKey) {
+            event.stopPropagation();
             elementRef.current.removeBendpoint(pointRef.current);
           }
-        })
-      );
+        });
+      });
       dragRef(node);
     },
     [dragRef]
@@ -90,7 +89,7 @@ export const withBendpoint = <DropResult, CollectedProps, Props = {}>(
 ) => <P extends WithBendpointProps & CollectedProps & Props>(WrappedComponent: React.ComponentType<P>) => {
   const Component: React.FunctionComponent<Omit<P, keyof WithBendpointProps> & HocProps> = props => {
     const [dragProps, bendpointRef] = useBendpoint(props.point, spec as any, props);
-    return <WrappedComponent {...(props as any)} bendpointRef={bendpointRef} {...dragProps} />;
+    return <WrappedComponent {...(props as any)} bendpointRef={bendpointRef} {...(dragProps as any)} />;
   };
   Component.displayName = `withBendpoint(${WrappedComponent.displayName || WrappedComponent.name})`;
   return observer(Component);

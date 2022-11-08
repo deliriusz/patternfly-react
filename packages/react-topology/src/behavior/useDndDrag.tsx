@@ -49,7 +49,8 @@ const getModifiers = (event: MouseEvent | TouchEvent | KeyboardEvent): number =>
 };
 
 const getOperation = (
-  operation: DragSpecOperationType<DragOperationWithType> | undefined
+  operation: DragSpecOperationType<DragOperationWithType> | undefined,
+  event: MouseEvent | TouchEvent | KeyboardEvent | undefined
 ): DragOperationWithType | undefined => {
   if (!operation) {
     return undefined;
@@ -57,7 +58,7 @@ const getOperation = (
   if (operation.hasOwnProperty('type')) {
     return operation as DragOperationWithType;
   }
-  return operation[getModifiers((d3.event && d3.event.sourceEvent) || d3.event)] || operation[Modifiers.DEFAULT];
+  return operation[getModifiers((event && (event as any).sourceEvent) || event)] || operation[Modifiers.DEFAULT];
 };
 
 const hasOperation = (operation: DragSpecOperationType<DragOperationWithType> | undefined): boolean =>
@@ -150,14 +151,14 @@ export const useDndDrag = <
                   return selected.select('[data-surface="true"]').node() as any;
                 }
               )
-              .on('start', function() {
+              .on('start', function(event: any) {
                 operation =
                   typeof specRef.current.operation === 'function'
                     ? specRef.current.operation(monitor, propsRef.current)
                     : specRef.current.operation;
                 const updateOperation = action(async () => {
                   if (operation && idRef.current) {
-                    const op = getOperation(operation);
+                    const op = getOperation(operation, event);
                     if (dndManager.getOperation() !== op) {
                       // restart the drag with the new operation
                       if (dndManager.isDragging()) {
@@ -186,14 +187,13 @@ export const useDndDrag = <
                   }
                 });
                 d3.select(ownerDocument)
-                  .on(
-                    createKeyHandlerId('keydown'),
+                  .on(createKeyHandlerId('keydown'), event =>
                     action(() => {
-                      const e = d3.event as KeyboardEvent;
+                      const e = event as KeyboardEvent;
                       if (e.key === 'Escape') {
                         if (dndManager.isDragging() && dndManager.cancel()) {
                           operationChangeEvents = undefined;
-                          d3.select(d3.event.view).on('.drag', null);
+                          d3.select((event as any).view).on('.drag', null);
                           d3.select(ownerDocument).on(createKeyHandlerId(), null);
                           dndManager.endDrag();
                         }
@@ -204,8 +204,7 @@ export const useDndDrag = <
                   )
                   .on(createKeyHandlerId('keyup'), updateOperation);
               })
-              .on(
-                'drag',
+              .on('drag', event =>
                 action(() => {
                   const { pageX, pageY } = d3.event.sourceEvent;
                   const { x, y } = d3.event;
@@ -214,7 +213,7 @@ export const useDndDrag = <
                   } else if (operationChangeEvents) {
                     operationChangeEvents.drag = [x, y, pageX, pageY];
                   } else {
-                    const op = getOperation(operation);
+                    const op = getOperation(operation, event as any);
                     if (op || !hasOperation(operation)) {
                       if (idRef.current) {
                         dndManager.beginDrag(idRef.current, op, x, y, pageX, pageY);
